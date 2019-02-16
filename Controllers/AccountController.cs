@@ -16,7 +16,6 @@ namespace MVCTest.Controllers
 
         private void MigrateShoppingCart(string UserName)
         {
-            // Associate shopping cart items with logged-in user
             var cart = ShoppingCart.GetCart(this.HttpContext);
 
             cart.MigrateCart(UserName);
@@ -60,7 +59,6 @@ namespace MVCTest.Controllers
                 }
             }
 
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
@@ -90,7 +88,6 @@ namespace MVCTest.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Attempt to register the user
                 MembershipCreateStatus createStatus;
                 Membership.CreateUser(model.UserName, model.Password, model.Email, "question", "answer", true, null, out createStatus);
 
@@ -107,7 +104,6 @@ namespace MVCTest.Controllers
                 }
             }
 
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
@@ -129,9 +125,6 @@ namespace MVCTest.Controllers
         {
             if (ModelState.IsValid)
             {
-
-                // ChangePassword will throw an exception rather
-                // than return false in certain failure scenarios.
                 bool changePasswordSucceeded;
                 try
                 {
@@ -153,7 +146,6 @@ namespace MVCTest.Controllers
                 }
             }
 
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
